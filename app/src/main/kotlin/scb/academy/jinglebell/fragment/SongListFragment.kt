@@ -33,7 +33,6 @@ class SongListFragment : Fragment() {
         }
 
         override fun onResponse(call: Call<SongSearchResult>, response: Response<SongSearchResult>) {
-//            Log.i("networking", "${response.body()}")
             val songs = response.body()!!.results
             songAdapter.submitList(songs)
         }
@@ -43,13 +42,12 @@ class SongListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         rvSongs = view.findViewById(R.id.rv_rooms)
         rvSongs.apply {
-            adapter = SongAdapter()
+            adapter = SongAdapter(ctx = view.context)
                 .also { songAdapter = it }
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
-
         loadSongs()
     }
 

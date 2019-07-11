@@ -1,18 +1,22 @@
 package scb.academy.jinglebell.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import scb.academy.jinglebell.R
+import scb.academy.jinglebell.activity.SongInfoActivity
 import scb.academy.jinglebell.extension.setImageUrl
 import scb.academy.jinglebell.vo.Song
 
 class SongAdapter(
     private var _songs: List<Song> = listOf(),
-    private val onClick: (Song) -> Unit = {}
+    private val onClick: (Song) -> Unit = {
+        SongInfoActivity.startActivity(ctx, it)
+    },
+    private val ctx: Context
 ) : RecyclerView.Adapter<SongItemViewHolder>() {
 
     val songs: List<Song>
@@ -21,7 +25,7 @@ class SongAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SongItemViewHolder(parent)
 
     override fun onBindViewHolder(holder: SongItemViewHolder, position: Int) {
-        holder.bind(_songs[position], onClick)
+        holder.bind(_songs[position], onClick, holder.itemView.context)
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +52,7 @@ class SongItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val tvSongArtist: TextView = itemView.findViewById(R.id.tv_song_artist)
     private val tvSongPrice: TextView = itemView.findViewById(R.id.tv_song_price)
 
-    fun bind(song: Song, onClick: (Song) -> Unit = {}) {
+    fun bind(song: Song, onClick: (Song) -> Unit = {}, ctx: Context) {
         tvSongName.text = song.name
         tvSongArtist.text = song.artistName
         tvSongPrice.text = "${song.price} ${song.priceCurrency}"
