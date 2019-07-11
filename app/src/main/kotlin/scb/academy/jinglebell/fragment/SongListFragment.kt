@@ -33,7 +33,9 @@ class SongListFragment : Fragment() {
         }
 
         override fun onResponse(call: Call<SongSearchResult>, response: Response<SongSearchResult>) {
-            Log.i("networking", "${response.body()}")
+//            Log.i("networking", "${response.body()}")
+            val songs = response.body()!!.results
+            songAdapter.submitList(songs)
         }
     }
 
