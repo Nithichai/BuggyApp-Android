@@ -2,10 +2,10 @@ package scb.academy.jinglebell.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import scb.academy.jinglebell.R
 import scb.academy.jinglebell.fragment.CountryListFragment
+import scb.academy.jinglebell.fragment.ProfileFragment
 import scb.academy.jinglebell.fragment.SongListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +51,10 @@ class MainActivity : AppCompatActivity() {
                 SongListFragment()
             }
 
-            R.id.action_profile -> { Fragment() }
+            R.id.action_profile -> {
+                if (currentFragment is ProfileFragment) return
+                ProfileFragment()
+            }
 
             else -> return
         }

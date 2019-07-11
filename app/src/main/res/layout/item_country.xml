@@ -25,6 +25,7 @@
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
         app:layout_constraintStart_toEndOf="@id/iv_country_flag"
         app:layout_constraintTop_toTopOf="@id/iv_country_flag"
         tools:text="@tools:sample/lorem" />

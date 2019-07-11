@@ -32,7 +32,7 @@ class SongAdapter(
         return if (songs.count() == 0) {
             0
         } else {
-            songs.count() + 1
+            songs.count()
         }
     }
 
